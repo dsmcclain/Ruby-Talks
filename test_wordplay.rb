@@ -10,4 +10,9 @@ of sentence separation. This is the end
 of the test.}
     assert_equal("This is the end of the test", test_text.sentences[2])
   end
+
+  def test_words
+    assert_equal(["a", "b", "cde", "fg"], "a b cde. fg.".words)
+    assert_equal(%w{these are all just words}, "these, are. all. just words,".words)
+  end
 end
