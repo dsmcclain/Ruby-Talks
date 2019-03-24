@@ -15,4 +15,10 @@ of the test.}
     assert_equal(["a", "b", "cde", "fg"], "a b cde. fg.".words)
     assert_equal(%w{these are all just words}, "these, are. all. just words,".words)
   end
+
+  def test_most_important_sentence
+    assert_equal('This is a great test',
+                  WordPlay.most_important_sentence(
+                    'This is a test. This is a second test. This is a great test', %w{test great this} ))
+  end
 end
