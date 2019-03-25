@@ -24,20 +24,13 @@ class RubyTalks
   def response_to(input)
     prepared_input = preprocess(input).downcase
     sentence = most_important_sentence(prepared_input)
+    responses = possible_responses(sentence)
   end
 
   private
 
   def preprocess(input)
     perform_substitutions input
-  end
-
-  def most_important_sentence(input)
-    key_words = @data[:responses].keys.select do |k|
-      k.class == String && k =~ /^\w+$/
-    end
-
-    WordPlay.most_important_sentence(input, key_words)
   end
 
   def perform_substitutions(input)
@@ -48,5 +41,27 @@ class RubyTalks
   def random_response(key)
     random_index = rand(@data[:responses][key].length)
     @data[:responses][key][random_index].gsub(/\[name\]/, @name)
+  end
+
+  def most_important_sentence(input)
+    key_words = @data[:responses].keys.select do |k|
+      k.class == String && k =~ /^\w+$/
+    end
+
+    WordPlay.most_important_sentence(input, key_words)
+  end
+
+  def possible_responses(sentence)
+    responses = []
+
+    @data[:responses].keys.each.do |pattern|
+      next unless pattern.is_a?(String)
+      if sentence.match('\b' + pattern.gsub(/\*/, '') + '\b')
+        responses << @data][:responses][pattern]
+      end
+    end
+    
+    responses << @data[:respones][:default] if responses.empty?
+    responses.flatten
   end
 end
