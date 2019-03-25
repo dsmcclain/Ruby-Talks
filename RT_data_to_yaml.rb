@@ -12,7 +12,7 @@ ruby_talks_data = {
                         "What?",
                         "Huh?"
                       ],
-    :greeting       => ["Hi there. I'm Ruby Talks. What's happening?"],
+    :greeting       => ["Hi there. I'm [name]. What's happening?"],
     :farewell       => ["Goodbye!"],
     'hello'         => [
                         "How's it going?",
