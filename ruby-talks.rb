@@ -25,6 +25,7 @@ class RubyTalks
     prepared_input = preprocess(input).downcase
     sentence = most_important_sentence(prepared_input)
     responses = possible_responses(sentence)
+    responses[rand(responses.length)]
   end
 
   private
@@ -57,10 +58,17 @@ class RubyTalks
     @data[:responses].keys.each.do |pattern|
       next unless pattern.is_a?(String)
       if sentence.match('\b' + pattern.gsub(/\*/, '') + '\b')
-        responses << @data][:responses][pattern]
+        if pattern.include?('*')
+          responses << @data[:responses][pattern].collect do |phrase|
+            matching_section = sentence.sub(/^.*#{pattern}\s+/, '')
+            phrase.sub('*', WordPlay.switch_pronouns(matching_section))
+          end
+        else  
+          responses << @data][:responses][pattern]
+        end
       end
     end
-    
+
     responses << @data[:respones][:default] if responses.empty?
     responses.flatten
   end

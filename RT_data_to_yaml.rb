@@ -18,6 +18,10 @@ ruby_talks_data = {
                         "How's it going?",
                         "Hi there!"
                        ],
+    'i like *'      => [
+                        "Why do you like *?",
+                        "Wow! I like * too!"
+                       ]
   }
 }
 
