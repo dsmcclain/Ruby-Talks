@@ -60,9 +60,7 @@ class RubyTalks
       if sentence.match('\b' + pattern.gsub(/\*/, '') + '\b')
         if pattern.include?('*')
           responses << @data[:responses][pattern].collect do |phrase|
-            puts "phrase is #{phrase}"
             matching_section = sentence.sub(/^.*#{pattern}\s+/, '').chop
-            puts "matching section is #{matching_section} end"
             phrase.sub('*', WordPlay.switch_pronouns(matching_section))
           end
         else  
