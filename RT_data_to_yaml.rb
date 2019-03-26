@@ -2,9 +2,9 @@ require 'yaml'
 
 ruby_talks_data = {
   :presubs => [
-    ["dont", "don't"],
+    [/\bdont\b/, "don't"],
     ["youre", "you're"],
-    ["ur", "your"]
+    [/\bur\b/, "your"]
   ],
   :responses => {
     :default        => [

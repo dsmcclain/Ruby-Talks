@@ -1,10 +1,10 @@
 ---
 :presubs:
-- - dont
+- - !ruby/regexp /\bdont\b/
   - don't
 - - youre
   - you're
-- - ur
+- - !ruby/regexp /\bur\b/
   - your
 :responses:
   :default:
