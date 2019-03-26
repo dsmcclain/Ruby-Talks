@@ -55,7 +55,7 @@ class RubyTalks
   def possible_responses(sentence)
     responses = []
 
-    @data[:responses].keys.each.do |pattern|
+    @data[:responses].keys.each do |pattern|
       next unless pattern.is_a?(String)
       if sentence.match('\b' + pattern.gsub(/\*/, '') + '\b')
         if pattern.include?('*')
@@ -64,12 +64,12 @@ class RubyTalks
             phrase.sub('*', WordPlay.switch_pronouns(matching_section))
           end
         else  
-          responses << @data][:responses][pattern]
+          responses << @data[:responses][pattern]
         end
       end
     end
 
-    responses << @data[:respones][:default] if responses.empty?
+    responses << @data[:responses][:default] if responses.empty?
     responses.flatten
   end
 end
